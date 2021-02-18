@@ -19,6 +19,7 @@ spring:
   redis:
     host: 118.31.16.35
     port: 6379
+    password: 123456
 
 mybatis:
   type-aliases-package: com.qyl.pojo

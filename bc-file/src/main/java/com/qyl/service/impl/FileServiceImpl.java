@@ -1,6 +1,5 @@
 package com.qyl.service.impl;
 
-import com.qyl.entity.ResponseEntity;
 import com.qyl.service.FileService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,20 +25,19 @@ public class FileServiceImpl implements FileService {
     private String avatarPath;
 
     @Override
-    public ResponseEntity<String> uploadAvatar(MultipartFile multipartFile) {
+    public String uploadAvatar(MultipartFile file) {
         // 1. 修改文件名
-        String ext = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
+        String ext = FilenameUtils.getExtension(file.getOriginalFilename());
         String newFilename = UUID.randomUUID().toString() + "." + ext;
         // 2. 文件上传
         try {
-            multipartFile.transferTo(new File(avatarPath, newFilename));
+            file.transferTo(new File(avatarPath, newFilename));
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.fail();
+            return null;
         }
-
         // 3. 返回url
         String url = "http://localhost:" + port + "/" + newFilename;
-        return ResponseEntity.ok(url);
+        return url;
     }
 }

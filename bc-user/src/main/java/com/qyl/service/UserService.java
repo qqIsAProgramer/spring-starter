@@ -16,10 +16,10 @@ public interface UserService {
      * 用户注册
      * @param user
      * @param verifyCode
-     * @param multipartFile
+     * @param file
      * @return
      */
-    ResponseEntity<Void> register(User user, String verifyCode, MultipartFile multipartFile);
+    ResponseEntity<Void> register(User user, String verifyCode, MultipartFile file);
 
     /**
      * 通过用户名查询用户

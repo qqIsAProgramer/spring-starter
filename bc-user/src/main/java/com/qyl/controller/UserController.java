@@ -26,12 +26,12 @@ public class UserController {
      * 用户注册
      * @param user
      * @param verifyCode
-     * @param multipartFile
+     * @param file
      * @return
      */
     @PostMapping("/register")
-    public ResponseEntity<Void> register(User user, String verifyCode, MultipartFile multipartFile) {
-        return userService.register(user, verifyCode, multipartFile);
+    public ResponseEntity<Void> register(User user, String verifyCode, MultipartFile file) {
+        return userService.register(user, verifyCode, file);
     }
 
     /**

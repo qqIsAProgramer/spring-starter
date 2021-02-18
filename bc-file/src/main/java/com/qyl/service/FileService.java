@@ -1,6 +1,5 @@
 package com.qyl.service;
 
-import com.qyl.entity.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -12,8 +11,8 @@ public interface FileService {
 
     /**
      * 上传头像
-     * @param multipartFile
+     * @param file
      * @return
      */
-    ResponseEntity<String> uploadAvatar(MultipartFile multipartFile);
+    String uploadAvatar(MultipartFile file);
 }

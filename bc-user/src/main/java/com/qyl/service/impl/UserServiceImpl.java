@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     private static final String KEY_PREFIX = "user:phone:code:";
 
     @Override
-    public ResponseEntity<Void> register(User user, String verifyCode, MultipartFile multipartFile) {
+    public ResponseEntity<Void> register(User user, String verifyCode, MultipartFile file) {
         // 校验验证码
         if (!verifyCode.equals(stringRedisTemplate.opsForValue().get(KEY_PREFIX + user.getPhone()))) {
             return ResponseEntity.error(ResponseEnum.CODE_IS_INCORRECT.getCode(), ResponseEnum.CODE_IS_INCORRECT.getMsg());
@@ -52,7 +52,8 @@ public class UserServiceImpl implements UserService {
             // 密码加密
             user.setPassword(PwdEncryptUtil.encodeByMD5(user.getPassword()));
             // 存储头像路径
-            user.setAvatar(fileClient.uploadAvatar(multipartFile).getData());
+            user.setAvatar(fileClient.uploadAvatar(file));
+
             user.setCreateTime(new Date());
             // 写入数据库
             userMapper.insertSelective(user);

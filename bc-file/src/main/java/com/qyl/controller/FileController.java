@@ -1,6 +1,5 @@
 package com.qyl.controller;
 
-import com.qyl.entity.ResponseEntity;
 import com.qyl.service.FileService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,11 +20,11 @@ public class FileController {
 
     /**
      * 上传头像
-     * @param multipartFile
+     * @param file
      * @return
      */
     @PostMapping("/file/upload/avatar")
-    public ResponseEntity<String> uploadAvatar(MultipartFile multipartFile) {
-        return fileService.uploadAvatar(multipartFile);
+    public String uploadAvatar(MultipartFile file) {
+        return fileService.uploadAvatar(file);
     }
 }
