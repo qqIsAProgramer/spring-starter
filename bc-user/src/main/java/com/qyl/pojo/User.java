@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +15,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "user")
-public class User implements Serializable {
+public class User {
     /**
      * 用户ID
      */
