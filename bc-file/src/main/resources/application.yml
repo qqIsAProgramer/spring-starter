@@ -1,0 +1,16 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: file
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+  resources:
+    static-locations: file:${upload.dir.avatar}  # 开放展示文件的静态地址
+
+upload.dir.avatar: D:\java\MyProject\spring-starter\bc-file\src\main\resources\avatar

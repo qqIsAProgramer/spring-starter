@@ -1,0 +1,28 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+    gateway:
+      discovery:
+        locator:
+          enabled: true    # 开启动态服务名获取路由地址（使用 lb 必须开启）
+      routes:
+        - id: user_route    # 指定路由唯一标识
+          uri: lb://user    # 指定路由服务的地址  lb: LoadBalance 负载均衡
+          predicates:
+            - Path=/user/** # 指定路由规则
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+        add-to-simple-url-handler-mapping: true

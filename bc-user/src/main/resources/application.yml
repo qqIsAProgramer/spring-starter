@@ -3,4 +3,25 @@ server:
 
 spring:
   application:
-    name: bc-user
+    name: user
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://118.31.16.35:3306/db02?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  redis:
+    host: 118.31.16.35
+    port: 6379
+
+mybatis:
+  type-aliases-package: com.qyl.pojo
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
